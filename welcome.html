@@ -1,0 +1,80 @@
+<?php
+    include_once "db/cont.php";
+    $sql="SELECT IMG,Des from home LIMIT 5";
+    $result=mysqli_query($link,@sql);
+    $counter=0;
+    mysqli_close($link);
+?>
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>DnJ Real Estate</title>
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="st/style.css">
+        <script>
+        window.setInterval(function(){
+            var img=document.getElementById("ph");
+            var des=document.getElementById("sdes");
+            var max=<?php echo $result.length;?>;
+            <?php
+                $counter++;
+                if ($counter>=$result.length-1)
+                    $counter=0;
+            
+                if (!isset($result[$counter][0])||!isset($result[$counter][1]))
+                {
+                    $result[$counter][0]="im/h/h3.jpg";
+                    $result[$counter][1]="Welcome to SnJ Enterpirse.";
+                    
+                }
+            ?>
+            img.src=<?php echo $result[$counter][0];?>;
+            des.innerHTML=<?php echo $result[$counter][1];?>;
+            
+            
+        },5000);
+        
+        
+        </script>
+    </head>
+    <body>
+        <div class="row">
+            <div class="header">
+                <ul id="menu">
+                    <li id="logo"><a href="#"><img src="im/logo.png"></a></li>
+                    
+                    <li><a href="">Sales</a></li>
+                    
+                    <li><a href="">Rent</a></li>
+                    
+                    <li><a href="">About Us</a></li>
+                    
+                    <li><a href="">Contact Us</a></li>
+                   
+                    <li id="search"><a href="">Search &nbsp;<img src="im/search.png"></a></li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col5"></div>
+            
+            <div class="col1" ><!--SLideShow-->
+                
+                <div id="simg"><img id="ph" src="im/h/h3.jpg"></div>
+                <div id="sdes">welcomw</div>
+                <div id="sbut">sasdad</div>
+            </div>
+                <div class="row">
+                    <div class="col3"><a href=""><img src="im/login.png"></a></div>
+                    <div class="col3">DeezNuts</div>
+                </div>
+            
+        </div>
+        <div class="footer">
+            habla
+        </div>
+    </body>
+</html>
